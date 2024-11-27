@@ -1,0 +1,55 @@
+<app-header [isModal]="true" title="registrar asistencia" ></app-header>
+<ion-content>
+    <form [formGroup]="form" class="ion-padding ion-text-center" (ngSubmit)="submit()" (keypress.enter)="submit()">
+
+        <ion-avatar class="ion-avatar" *ngIf="form.value.image">
+            <img [src]="form.value.image" />
+        </ion-avatar>
+
+        <ion-icon class="image-icon" *ngIf="!form.value.image" name="image-outline"></ion-icon>
+
+        <!-- Nombre -->
+        <app-custom-input 
+        autocomplete="name" 
+        icon="person-outline"
+        [control]="form.controls.name" 
+        type="text"
+        label="Nombre"
+        iconColor="green"
+        ></app-custom-input>
+
+        <div class="validators" *ngIf="form.controls.name.errors && form.controls.name.touched">
+            <div *ngIf="form.controls.name.errors?.['required']">El Nombre es requerido</div>
+            <div *ngIf="form.controls.name.errors?.['minLength']">el nombre debe tener al menos 4 caracteres</div>
+        </div>
+        <!-- Fecha -->
+        <app-custom-input 
+        [control]="form.controls.date" 
+        type="date" 
+        label="Fecha" 
+        icon="calendar-outline" 
+        iconColor="green">
+        </app-custom-input>
+
+        <div class="validators" *ngIf="form.controls.date.errors && form.controls.date.touched">
+        <div *ngIf="form.controls.date.errors?.['required']">La Fecha es requerida</div>
+        </div>
+
+        <!-- Fotografía -->
+        <app-custom-input 
+        label="Fotografía" 
+        icon="camera-outline" 
+        (click)="takeImage()" 
+        iconColor="green">
+        </app-custom-input>
+
+
+
+        <ion-button  mode="ios" class="ion-margin close-button" type="submit" [disabled]="form.invalid">
+            Registrar asistencia
+            <ion-icon slot="end" name="checkmark-circle-outline"></ion-icon>
+        </ion-button>
+
+
+    </form>
+</ion-content>

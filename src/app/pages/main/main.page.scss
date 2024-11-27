@@ -1,0 +1,23 @@
+ion-content {
+    --padding-top: 20px;
+}
+
+ion-item {
+    font-size: 14px;
+    ;
+
+    &.active {
+        color: var(--ion-color-secondary);
+
+        ion-icon {
+
+            color: var(--ion-color-secondary);
+        }
+    }
+}
+
+ion-menu {
+    width: 254px;
+    min-width: 254px;
+    outline: none;
+}
